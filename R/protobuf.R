@@ -35,7 +35,7 @@ p2r_ts<-function(p){
 }
 
 p2r_test<-function(p){
-  return (list(value=p$value, pvalue=p$pvalue, description=p$description))
+  return (rjd3toolkit::statisticaltest(p$value, p$pvalue, p$description))
 }
 
 p2r_parameters_rslt<-function(p){

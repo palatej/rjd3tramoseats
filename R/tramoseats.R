@@ -77,7 +77,7 @@ tramo_output<-function(jq){
     estimation_spec=p2r_spec_tramo(p$estimation_spec),
     result_spec=p2r_spec_tramo(p$result_spec)
   ),
-  class="JD3TRAMO_OUTPUT")
+  class=c("JD3TRAMO_OUTPUT", "JD3"))
   )
 }
 
