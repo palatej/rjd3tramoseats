@@ -260,7 +260,7 @@ terror<-function(ts, spec, nback=1){
 #' @export
 #'
 #' @examples
-forecast<-function(ts, spec="trfull", nf=-1){
+tramo.forecast<-function(ts, spec="trfull", nf=-1){
   # TODO : check parameters
   jts<-ts_r2jd(ts)
   if (nf<0) nf<-frequency(ts)*(-nf)
