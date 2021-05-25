@@ -229,7 +229,7 @@ forecast_names<-c("forecast", "error", "fraw", "efraw")
 #' @export
 #'
 #' @examples
-terror<-function(ts, spec, nback=1){
+terror<-function(ts, spec="trfull", nback=1){
   # TODO : check parameters
   jts<-ts_r2jd(ts)
   if (is.character(spec)){

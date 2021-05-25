@@ -4,7 +4,7 @@
 \alias{terror}
 \title{Title}
 \usage{
-terror(ts, spec, nback = 1)
+terror(ts, spec = "trfull", nback = 1)
 }
 \arguments{
 \item{nback}{}
