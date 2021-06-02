@@ -1,4 +1,4 @@
-#' @include utils.R regarima_rslts.R tramoseats_spec.R
+#' @include utils.R tramoseats_spec.R
 NULL
 
 
