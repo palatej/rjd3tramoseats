@@ -1,4 +1,5 @@
 #' @importFrom rjd3toolkit .JD3_ENV
+NULL
 
 DATE_MIN<-NULL
 DATE_MAX<-NULL
