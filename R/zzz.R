@@ -14,7 +14,6 @@ enum_of<-NULL
 p2r_ts<-NULL
 p2r_matrix<-NULL
 p2r_regarima_rslts<-NULL
-regarima_rslts<-NULL
 p2r_sa_diagnostics<-NULL
 p2r_sa_decomposition<-NULL
 
@@ -40,7 +39,6 @@ p2r_sa_decomposition<-NULL
   p2r_matrix<<-.JD3_ENV$p2r_matrix
   p2r_sa_diagnostics<<-.JD3_ENV$p2r_sa_diagnostics
   p2r_sa_decomposition<<-.JD3_ENV$p2r_sa_decomposition
-  regarima_rslts<<-.JD3_ENV$regarima_rslts
   DATE_MIN<<-.JD3_ENV$DATE_MIN
   DATE_MAX<<-.JD3_ENV$DATE_MAX
 }

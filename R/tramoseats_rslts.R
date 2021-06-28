@@ -1,10 +1,18 @@
 #' @include utils.R
 NULL
 
+regarima_rslts <- function(jrslts){
+  if (is.jnull(jrslts))
+    return (NULL)
+  q<-.jcall("demetra/tramoseats/r/Tramo", "[B", "toBuffer", jrslts)
+  rq<-RProtoBuf::read(regarima.RegArimaModel, q)
+  return (p2r_regarima_rslts(rq))
+}
+
 tramoseats_rslts <- function(jrslts){
   if (is.jnull(jrslts))
     return (NULL)
-  q<-.jcall(jrslts, "[B", "buffer")
+  q<-.jcall("demetra/tramoseats/r/TramoSeats", "[B", "toBuffer", jrslts)
   rq<-RProtoBuf::read(tramoseats.TramoSeatsResults, q)
   return (p2r_tramoseats_rslts(rq))
 }

@@ -1,4 +1,4 @@
-#' @include utils.R tramoseats_spec.R
+#' @include utils.R tramoseats_spec.R tramoseats_rslts.R
 NULL
 
 
@@ -48,7 +48,7 @@ fast.tramo<-function(ts, spec="trfull", context=NULL){
   # TODO : check parameters
   jts<-ts_r2jd(ts)
   if (is.character(spec)){
-    jrslt<-.jcall("demetra/tramoseats/r/Tramo", "Ldemetra/tramoseats/r/Tramo$Results;", "process", jts, spec)
+    jrslt<-.jcall("demetra/tramoseats/r/Tramo", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, spec)
   }else{
     jspec<-r2jd_spec_tramo(spec)
     if (is.null(context)){
@@ -57,7 +57,7 @@ fast.tramo<-function(ts, spec="trfull", context=NULL){
       # TODO
       jcontext<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/tramoseats/r/Tramo", "Ldemetra/tramoseats/r/Tramo$Results;", "process", jts, jspec, jcontext )
+    jrslt<-.jcall("demetra/tramoseats/r/Tramo", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext )
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -185,13 +185,13 @@ tramoseats.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Com
 fast.tramoseats<-function(ts, spec="rsafull", context=NULL){
   jts<-ts_r2jd(ts)
   if (is.character(spec)){
-    jrslt<-.jcall("demetra/tramoseats/r/TramoSeats", "Ldemetra/tramoseats/r/TramoSeats$Results;", "process", jts, spec)
+    jrslt<-.jcall("demetra/tramoseats/r/TramoSeats", "Ljdplus/tramoseats/TramoSeatsResults;", "process", jts, spec)
   }else{
     jspec<-r2jd_spec_tramoseats(spec)
     if (is.null(context)){
       jcontext<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/tramoseats/r/TramoSeats", "Ldemetra/tramoseats/r/TramoSeats$Results;", "process", jts, jspec, jcontext)
+    jrslt<-.jcall("demetra/tramoseats/r/TramoSeats", "Ljdplus/tramoseats/TramoSeatsResults;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
