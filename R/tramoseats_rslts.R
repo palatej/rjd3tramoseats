@@ -26,7 +26,7 @@ p2r_tramoseats_rslts<-function(p){
       final=p2r_sa_decomposition(p$final),
       diagnostics=p2r_sa_diagnostics(p$diagnostics_sa)
     ),
-    class= c("JD3TRAMOSEATS_RSLTS", "JD3")))
+    class= c("JD3_TRAMOSEATS_RSLTS", "JD3")))
 }
 
 
@@ -37,7 +37,7 @@ p2r_seats_rslts<-function(p){
       seatsmodel=p2r_arima(p$seats_arima),
       canonicaldecomposition=p2r_ucarima(p$canonical_decomposition),
       stochastics=p2r_sa_decomposition(p$stochastics, T)),
-    class= "JD3SEATS"))
+    class= "JD3_SEATS"))
 }
 
 ############################# Generics
@@ -50,7 +50,7 @@ p2r_seats_rslts<-function(p){
 #' @export
 #'
 #' @examples
-sa.decomposition.JD3TRAMOSEATS_RSLTS<-function(x){
+sa.decomposition.JD3_TRAMOSEATS_RSLTS<-function(x){
   if (is.null(x)) return (NULL)
   return (rjd3sa::sadecomposition(x$final$series$data,
                                 x$final$sa$data,
@@ -70,7 +70,7 @@ sa.decomposition.JD3TRAMOSEATS_RSLTS<-function(x){
 #' @export
 #'
 #' @examples
-sa.decomposition.JD3TRAMOSEATS_OUTPUT<-function(x){
+sa.decomposition.JD3_TRAMOSEATS_OUTPUT<-function(x){
   return (sa.decomposition(x$result))
 }
 

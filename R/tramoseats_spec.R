@@ -1,4 +1,4 @@
-#' @include utils.R jd3_r.R protobuf.R
+#' @include utils.R jd3_r.R
 NULL
 
 #' Title
@@ -92,7 +92,7 @@ p2r_spec_tramo<-function(pspec){
   return (structure(
     list(basic=basic, transform=transform, outlier=outlier,
          arima=arima, automodel=automodel, regression=regression, estimate=estimate),
-    class="JD3TRAMOSPEC"))
+    class="JD3_TRAMO_SPEC"))
 }
 
 
@@ -205,7 +205,7 @@ p2r_spec_tramoseats<-function(pspec){
     tramo=p2r_spec_tramo(pspec$tramo),
     seats=p2r_spec_seats(pspec$seats),
     benchmarking=p2r_spec_benchmarking(pspec$benchmarking)
-    ), class="JD3TRAMOSEATSSPEC"))
+    ), class="JD3_TRAMOSEATS_SPEC"))
 }
 
 r2p_spec_tramoseats<-function(r){

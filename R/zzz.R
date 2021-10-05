@@ -16,6 +16,22 @@ p2r_matrix<-NULL
 p2r_regarima_rslts<-NULL
 p2r_sa_diagnostics<-NULL
 p2r_sa_decomposition<-NULL
+p2r_arima<-NULL
+p2r_ucarima<-NULL
+p2r_span<-NULL
+r2p_span<-NULL
+p2r_spec_sarima<-NULL
+r2p_spec_sarima<-NULL
+p2r_parameter<-NULL
+r2p_parameter<-NULL
+p2r_parameters<-NULL
+r2p_parameters<-NULL
+p2r_outliers<-NULL
+r2p_outliers<-NULL
+p2r_ramps<-NULL
+r2p_ramps<-NULL
+p2r_spec_benchmarking<-NULL
+r2p_spec_benchmarking<-NULL
 
 
 .onLoad <- function(libname, pkgname) {
@@ -39,6 +55,22 @@ p2r_sa_decomposition<-NULL
   p2r_matrix<<-.JD3_ENV$p2r_matrix
   p2r_sa_diagnostics<<-.JD3_ENV$p2r_sa_diagnostics
   p2r_sa_decomposition<<-.JD3_ENV$p2r_sa_decomposition
+  p2r_arima<<-.JD3_ENV$p2r_arima
+  p2r_ucarima<<-.JD3_ENV$p2r_ucarima
+  p2r_span<<-.JD3_ENV$p2r_span
+  r2p_span<<-.JD3_ENV$r2p_span
+  p2r_spec_sarima<<-.JD3_ENV$p2r_spec_sarima
+  r2p_spec_sarima<<-.JD3_ENV$r2p_spec_sarima
+  p2r_parameter<<-.JD3_ENV$p2r_parameter
+  r2p_parameter<<-.JD3_ENV$r2p_parameter
+  p2r_parameters<<-.JD3_ENV$p2r_parameters
+  r2p_parameters<<-.JD3_ENV$r2p_parameters
+  p2r_outliers<<-.JD3_ENV$p2r_outliers
+  r2p_outliers<<-.JD3_ENV$r2p_outliers
+  p2r_ramps<<-.JD3_ENV$p2r_ramps
+  r2p_ramps<<-.JD3_ENV$r2p_ramps
+  p2r_spec_benchmarking<<-.JD3_ENV$p2r_spec_benchmarking
+  r2p_spec_benchmarking<<-.JD3_ENV$r2p_spec_benchmarking
   DATE_MIN<<-.JD3_ENV$DATE_MIN
   DATE_MAX<<-.JD3_ENV$DATE_MAX
 }
