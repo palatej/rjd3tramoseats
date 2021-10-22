@@ -233,13 +233,13 @@ terror<-function(ts, spec="trfull", nback=1){
   # TODO : check parameters
   jts<-ts_r2jd(ts)
   if (is.character(spec)){
-    jrslt<-.jcall("demetra/tramoseats/r/Terror", "Ldemetra/math/matrices/MatrixType;", "process", jts, spec, as.integer(nback))
+    jrslt<-.jcall("demetra/tramoseats/r/Terror", "Ldemetra/math/matrices/Matrix;", "process", jts, spec, as.integer(nback))
   }else{
     jspec<-r2jd_spec_tramo(spec)
     if (is.null(context)){
       jcontext<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/tramoseats/r/Terror", "Ldemetra/math/matrices/MatrixType;", "process", jts, jspec, jcontext, as.integer(nback))
+    jrslt<-.jcall("demetra/tramoseats/r/Terror", "Ldemetra/math/matrices/Matrix;", "process", jts, jspec, jcontext, as.integer(nback))
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -266,13 +266,13 @@ tramo.forecast<-function(ts, spec="trfull", nf=-1){
   if (nf<0) nf<-frequency(ts)*(-nf)
 
   if (is.character(spec)){
-    jrslt<-.jcall("demetra/tramoseats/r/Tramo", "Ldemetra/math/matrices/MatrixType;", "forecast", jts, spec, as.integer(nf))
+    jrslt<-.jcall("demetra/tramoseats/r/Tramo", "Ldemetra/math/matrices/Matrix;", "forecast", jts, spec, as.integer(nf))
   }else{
     jspec<-r2jd_spec_tramo(spec)
     if (is.null(context)){
       jcontext<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/tramoseats/r/Tramo", "Ldemetra/math/matrices/MatrixType;", "forecast", jts, jspec, jcontext, as.integer(nf))
+    jrslt<-.jcall("demetra/tramoseats/r/Tramo", "Ldemetra/math/matrices/Matrix;", "forecast", jts, jspec, jcontext, as.integer(nf))
   }
   if (is.jnull(jrslt)){
     return (NULL)
