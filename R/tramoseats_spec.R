@@ -73,7 +73,7 @@ p2r_spec_tramo<-function(pspec){
   r<-pspec$regression
   ptd<-pspec$regression$td
   pee<-pspec$regression$easter
-  td<-list(td=enum_extract(modelling.TradingDays, ptd$td), lp=enum_extract(modelling.LengthOfPeriod, ptd$lp),
+  td<-list(td=.JD3_ENV$enum_sextract(modelling.TradingDays, ptd$td), lp=enum_extract(modelling.LengthOfPeriod, ptd$lp),
            holidays=ptd$holidays, users=unlist(ptd$users), w=ptd$w,
            test=enum_extract(tramoseats.TradingDaysTest, ptd$test),
            auto=enum_extract(tramoseats.AutomaticTradingDays, ptd$auto),ptest=ptd$ptest,
@@ -140,7 +140,7 @@ r2p_spec_tramo<-function(rspec){
   pspec$regression$ramps=r2p_ramps(rspec$regression$ramps)
 
   #TD
-  pspec$regression$td$td<-enum_of(modelling.TradingDays, rspec$regression$td$td, "TD")
+  pspec$regression$td$td<-.JD3_ENV$enum_sof(modelling.TradingDays, rspec$regression$td$td)
   pspec$regression$td$lp<-enum_of(modelling.LengthOfPeriod, rspec$regression$td$lp, "LP")
   pspec$regression$td$holidays<-rspec$regression$td$holidays
   pspec$regression$td$users<-rspec$regression$td$users
