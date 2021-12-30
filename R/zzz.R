@@ -73,5 +73,14 @@ r2p_spec_benchmarking<-NULL
   r2p_spec_benchmarking<<-.JD3_ENV$r2p_spec_benchmarking
   DATE_MIN<<-.JD3_ENV$DATE_MIN
   DATE_MAX<<-.JD3_ENV$DATE_MAX
+
+  ###
+  .JD3_ENV$jd2r_spec_tramo<-jd2r_spec_tramo
+  .JD3_ENV$r2jd_spec_tramo<-r2jd_spec_tramo
+  .JD3_ENV$jd2r_spec_tramoseats<-jd2r_spec_tramoseats
+  .JD3_ENV$r2jd_spec_tramoseats<-r2jd_spec_tramoseats
+  .JD3_ENV$tramoseats_rslts<-tramoseats_rslts
+  .JD3_ENV$tramo_rslts<-regarima_rslts
+
 }
 

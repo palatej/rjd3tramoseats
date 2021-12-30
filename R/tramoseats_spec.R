@@ -30,7 +30,7 @@ spec_tramoseats_default<-function(name="rsafull"){
 
 ## JD <-> R
 
-jd2r_spec_tramo<-function(spec, context_dictionary = NULL){
+jd2r_spec_tramo<-function(spec){
   q<-.jcall("demetra/tramoseats/r/Tramo", "[B", "toBuffer", spec)
   rq<-RProtoBuf::read(tramoseats.TramoSpec, q)
   return (p2r_spec_tramo(rq))
