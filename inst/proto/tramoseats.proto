@@ -138,21 +138,13 @@ message TramoSpec {
 	EstimateSpec estimate= 7;
 }
 
-message CanonicalDecomposition{
-  oneof model{	
-	modelling.ArimaModel arima = 1;
-	modelling.SarimaModel sarima = 2;
-  }
-  repeated modelling.ArimaModel components = 3;
-}
-
 message SeatsResults{
   oneof model{	
 	modelling.ArimaModel seats_arima = 1;
 	modelling.SarimaModel seats_sarima = 2;
   }
   bool mean = 3;
-  CanonicalDecomposition canonical_decomposition = 4;   
+  modelling.UcarimaModel canonical_decomposition = 4;   
   sa.SaDecomposition stochastics = 5;
 }
 

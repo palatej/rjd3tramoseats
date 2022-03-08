@@ -7,7 +7,7 @@ regarima_rslts <- function(jrslts){
     return (NULL)
   q<-.jcall("demetra/tramoseats/r/Tramo", "[B", "toBuffer", jrslts)
   rq<-RProtoBuf::read(regarima.RegArimaModel, q)
-  return (p2r_regarima_rslts(rq))
+  return (rjd3modelling:::p2r_regarima_rslts(rq))
 }
 
 tramoseats_rslts <- function(jrslts){
@@ -22,10 +22,10 @@ p2r_tramoseats_rslts<-function(p){
 
   return (structure(
     list(
-      preprocessing=p2r_regarima_rslts(p$preprocessing),
+      preprocessing=rjd3modelling:::p2r_regarima_rslts(p$preprocessing),
       decomposition=p2r_seats_rslts(p$decomposition),
-      final=p2r_sa_decomposition(p$final),
-      diagnostics=p2r_sa_diagnostics(p$diagnostics_sa)
+      final=rjd3sa:::p2r_sa_decomposition(p$final),
+      diagnostics=rjd3sa:::p2r_sa_diagnostics(p$diagnostics_sa)
     ),
     class= c("JD3_TRAMOSEATS_RSLTS", "JD3")))
 }
@@ -35,9 +35,9 @@ p2r_tramoseats_rslts<-function(p){
 p2r_seats_rslts<-function(p){
   return (structure(
     list(
-      seatsmodel=p2r_arima(p$seats_arima),
-      canonicaldecomposition=p2r_ucarima(p$canonical_decomposition),
-      stochastics=p2r_sa_decomposition(p$stochastics, T)),
+      seatsmodel=rjd3modelling:::p2r_arima(p$seats_arima),
+      canonicaldecomposition=rjd3modelling:::p2r_ucarima(p$canonical_decomposition),
+      stochastics=rjd3sa:::p2r_sa_decomposition(p$stochastics, T)),
     class= "JD3_SEATS"))
 }
 

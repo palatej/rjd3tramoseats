@@ -4,10 +4,10 @@
 \alias{tramo.forecast}
 \title{Title}
 \usage{
-tramo.forecast(ts, spec = "trfull", nf = -1)
+tramo.forecast(ts, spec = "trfull", nf = -1, context = NULL)
 }
 \arguments{
-\item{nf}{}
+\item{context}{}
 }
 \value{
 

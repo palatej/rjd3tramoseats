@@ -1,3 +1,6 @@
+#' @include utils.R
+#' @importFrom stats is.ts frequency
+NULL
 
 #' Title
 #'
@@ -29,20 +32,20 @@ tramo.outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=F,
   }
 
 
-  jtramo<-.jcall("demetra/tramoseats/r/TramoOutliersDetection", "Ldemetra/tramoseats/r/TramoOutliersDetection$Results;", "process", ts_r2jd(y),
-               as.integer(order), as.integer(seasonal), mean, matrix_r2jd(X),
+  jtramo<-.jcall("demetra/tramoseats/r/TramoOutliersDetection", "Ldemetra/tramoseats/r/TramoOutliersDetection$Results;", "process", rjd3toolkit:::ts_r2jd(y),
+               as.integer(order), as.integer(seasonal), mean, rjd3toolkit:::matrix_r2jd(X),
                ao, ls, tc, so, cv, ml)
   model<-list(
     y=as.numeric(y),
-    variables=.JD3_ENV$proc_vector(jtramo, "variables"),
-    X=.JD3_ENV$proc_matrix(jtramo, "regressors"),
-    b=.JD3_ENV$proc_vector(jtramo, "b"),
-    bcov=.JD3_ENV$proc_matrix(jtramo, "bvar"),
-    linearized=.JD3_ENV$proc_vector(jtramo, "linearized")
+    variables=rjd3toolkit:::proc_vector(jtramo, "variables"),
+    X=rjd3toolkit:::proc_matrix(jtramo, "regressors"),
+    b=rjd3toolkit:::proc_vector(jtramo, "b"),
+    bcov=rjd3toolkit:::proc_matrix(jtramo, "bvar"),
+    linearized=rjd3toolkit:::proc_vector(jtramo, "linearized")
   )
 
-  ll0<-.JD3_ENV$proc_likelihood(jtramo, "initiallikelihood.")
-  ll1<-.JD3_ENV$proc_likelihood(jtramo, "finallikelihood.")
+  ll0<-rjd3toolkit:::proc_likelihood(jtramo, "initiallikelihood.")
+  ll1<-rjd3toolkit:::proc_likelihood(jtramo, "finallikelihood.")
 
   return(structure(list(
     model=model,

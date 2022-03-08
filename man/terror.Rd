@@ -4,10 +4,10 @@
 \alias{terror}
 \title{Title}
 \usage{
-terror(ts, spec = "trfull", nback = 1)
+terror(ts, spec = "trfull", nback = 1, context = NULL)
 }
 \arguments{
-\item{nback}{}
+\item{context}{}
 }
 \value{
 
