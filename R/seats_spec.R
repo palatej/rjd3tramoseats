@@ -39,7 +39,7 @@ set_seats <- function(x,
   UseMethod("set_seats", x)
 }
 #' @export
-set_seats.JD3_TRAMO_SPEC <- function(x,
+set_seats.JD3_SEATS_SPEC <- function(x,
                                approximation = c(NA, "None", "Legacy", "Noisy"),
                                trend.boundary = NA,
                                seas.boundary = NA,
@@ -56,10 +56,10 @@ set_seats.JD3_TRAMO_SPEC <- function(x,
   algorithm <- match.arg(toupper(algorithm[1]),
                          c(NA, "BURMAN", "KALMANSMOOTHER", "MCELROYMATRIX"))
   if (!is.na(approximation)) {
-    x$approximation <- sprintf("APP_%S", approximation)
+    x$approximation <- sprintf("APP_%s", approximation)
   }
   if (!is.na(algorithm)) {
-    x$algorithm <- sprintf("ALG_%S", algorithm)
+    x$algorithm <- sprintf("ALG_%s", algorithm)
   }
   if (!is.na(seas.tolerance)) {
     x$epsphi <- seas.tolerance

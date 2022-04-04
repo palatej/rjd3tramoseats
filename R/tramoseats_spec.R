@@ -172,7 +172,7 @@ r2p_spec_tramo<-function(rspec){
 # SEATS
 
 p2r_spec_seats<-function(spec){
-  return (list(
+  return (structure(list(
     xl=spec$xl_boundary,
     approximation=rjd3toolkit::enum_extract(tramoseats.SeatsApproximation, spec$approximation),
     epsphi=spec$seastolerance,
@@ -183,7 +183,7 @@ p2r_spec_seats<-function(spec){
     nfcasts=spec$nfcasts,
     nbcasts=spec$nbcasts,
     algorithm=rjd3toolkit::enum_extract(tramoseats.SeatsAlgorithm, spec$algorithm)
-  ))
+  ), class = "JD3_SEATS_SPEC"))
 }
 
 r2p_spec_seats<-function(spec){

@@ -2,7 +2,7 @@
 #' @export
 add_outlier.JD3_TRAMOSEATS_SPEC <- function(x,
                                      ...){
-  x$regarima <- add_outlier(x$regarima,
+  x$tramo <- add_outlier(x$tramo,
                             ...)
   x
 }
@@ -10,7 +10,7 @@ add_outlier.JD3_TRAMOSEATS_SPEC <- function(x,
 #' @export
 add_ramp.JD3_TRAMOSEATS_SPEC <- function(x,
                                   ...){
-  x$regarima <- add_ramp(x$regarima,
+  x$tramo <- add_ramp(x$tramo,
                          ...)
   x
 }
@@ -18,7 +18,7 @@ add_ramp.JD3_TRAMOSEATS_SPEC <- function(x,
 #' @export
 set_arima.JD3_TRAMOSEATS_SPEC <- function(x,
                                    ...){
-  x$regarima <- set_arima(x$regarima,
+  x$tramo <- set_arima(x$tramo,
                           ...)
   x
 }
@@ -26,7 +26,7 @@ set_arima.JD3_TRAMOSEATS_SPEC <- function(x,
 #' @export
 set_automodel.JD3_TRAMOSEATS_SPEC <- function(x,
                                        ...){
-  x$regarima <- set_automodel(x$regarima,
+  x$tramo <- set_automodel(x$tramo,
                               ...)
   x
 }
@@ -34,7 +34,7 @@ set_automodel.JD3_TRAMOSEATS_SPEC <- function(x,
 #' @export
 set_easter.JD3_TRAMOSEATS_SPEC <- function(x,
                                     ...){
-  x$regarima <- set_easter(x$regarima,
+  x$tramo <- set_easter(x$tramo,
                            ...)
   x
 }
@@ -42,7 +42,7 @@ set_easter.JD3_TRAMOSEATS_SPEC <- function(x,
 #' @export
 set_estimate.JD3_TRAMOSEATS_SPEC <- function(x,
                                       ...){
-  x$regarima <- set_estimate(x$regarima,
+  x$tramo <- set_estimate(x$tramo,
                              ...)
   x
 }
@@ -50,7 +50,7 @@ set_estimate.JD3_TRAMOSEATS_SPEC <- function(x,
 #' @export
 set_outlier.JD3_TRAMOSEATS_SPEC <- function(x,
                                      ...){
-  x$regarima <- set_outlier(x$regarima,
+  x$tramo <- set_outlier(x$tramo,
                             ...)
   x
 }
@@ -58,7 +58,7 @@ set_outlier.JD3_TRAMOSEATS_SPEC <- function(x,
 #' @export
 set_tradingdays.JD3_TRAMOSEATS_SPEC <- function(x,
                                          ...){
-  x$regarima <- set_tradingdays(x$regarima,
+  x$tramo <- set_tradingdays(x$tramo,
                                 ...)
   x
 }
@@ -66,7 +66,7 @@ set_tradingdays.JD3_TRAMOSEATS_SPEC <- function(x,
 #' @export
 set_transform.JD3_TRAMOSEATS_SPEC <- function(x,
                                        ...){
-  x$regarima <- set_transform(x$regarima,
+  x$tramo <- set_transform(x$tramo,
                               ...)
   x
 }
