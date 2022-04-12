@@ -4,10 +4,14 @@ Title: Interface to 'JDemetra+ 3.0' Seasonal Adjustment Software
 Version: 0.2.0
 Authors@R: c(
   person("Jean", "Palate", role = c("aut", "cre"),
-                email = "jean.palate@nbb.be"))
-Description: Interface around 'JDemetra+ 3.x' arima-toolkit (<https://github.com/jdemetra/jdemetra-core>), STACE project 
+                email = "jean.palate@nbb.be"),
+  person("Alain", "Quartier-la-Tente", role = c("aut"),
+                 email = "alain.quartier@yahoo.fr",
+                 comment = c(ORCID = "0000-0001-7890-3857")))
+Description: Interface around 'JDemetra+ 3.x' arima-toolkit (<https://github.com/jdemetra/jdemetra-core>), STACE project. 
 Depends:
   R (>= 3.6.0),
+  rjd3arima (>= 0.2.0)
 Imports:
   rJava (>= 1.0-6),
   RProtoBuf (>= 0.4.17),
@@ -17,17 +21,17 @@ Imports:
 SystemRequirements: Java SE 8 or higher
 License: EUPL
 URL: https://github.com/jdemetra/rjd3tramoseats
-LazyData: TRUE
-Suggests:
-    knitr,
-    rmarkdown
 RoxygenNote: 7.1.2
+Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/jdemetra/rjdemetra3/issues
 Encoding: UTF-8
 Collate: 
     'utils.R'
     'seats.R'
+    'seats_spec.R'
+    'tramo_generic.R'
     'tramo_outliers.R'
+    'tramo_spec.R'
     'tramoseats_rslts.R'
     'tramoseats_spec.R'
     'tramoseats.R'
