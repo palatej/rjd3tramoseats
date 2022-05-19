@@ -1,6 +1,9 @@
 #' @include utils.R
 NULL
 
+
+
+
 #' Title
 #'
 #' @param name
@@ -30,12 +33,16 @@ spec_tramoseats_default<-function(name="rsafull"){
 
 ## JD <-> R
 
+#' @export
+#' @rdname jd3_utilities
 jd2r_spec_tramo<-function(spec){
   q<-.jcall("demetra/tramoseats/r/Tramo", "[B", "toBuffer", spec)
   rq<-RProtoBuf::read(tramoseats.TramoSpec, q)
   return (p2r_spec_tramo(rq))
 }
 
+#' @export
+#' @rdname jd3_utilities
 r2jd_spec_tramo<-function(spec){
   pspec<-r2p_spec_tramo(spec)
   nq<-RProtoBuf::serialize(pspec, NULL)
@@ -43,12 +50,16 @@ r2jd_spec_tramo<-function(spec){
   return (nspec)
 }
 
+#' @export
+#' @rdname jd3_utilities
 jd2r_spec_tramoseats<-function(spec){
   q<-.jcall("demetra/tramoseats/r/TramoSeats", "[B", "toBuffer", spec)
   rq<-RProtoBuf::read(tramoseats.Spec, q)
   return (p2r_spec_tramoseats(rq))
 }
 
+#' @export
+#' @rdname jd3_utilities
 r2jd_spec_tramoseats<-function(spec){
   pspec<-r2p_spec_tramoseats(spec)
   nq<-RProtoBuf::serialize(pspec, NULL)
