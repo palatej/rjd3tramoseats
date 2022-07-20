@@ -22,9 +22,6 @@ tramo.outliers(
 \arguments{
 \item{ml}{}
 }
-\value{
-
-}
 \description{
 Title
 }

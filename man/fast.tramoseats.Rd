@@ -4,13 +4,10 @@
 \alias{fast.tramoseats}
 \title{Title}
 \usage{
-fast.tramoseats(ts, spec = "rsafull", context = NULL)
+fast.tramoseats(ts, spec = "rsafull", context = NULL, userdefined = NULL)
 }
 \arguments{
 \item{context}{}
-}
-\value{
-
 }
 \description{
 Title

@@ -21,7 +21,7 @@ Imports:
 SystemRequirements: Java SE 8 or higher
 License: EUPL
 URL: https://github.com/jdemetra/rjd3tramoseats
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/jdemetra/rjdemetra3/issues
 Encoding: UTF-8
@@ -35,4 +35,5 @@ Collate:
     'tramoseats_rslts.R'
     'tramoseats_spec.R'
     'tramoseats.R'
+    'ud_var.R'
     'zzz.R'

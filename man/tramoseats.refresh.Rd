@@ -17,9 +17,6 @@ tramoseats.refresh(
 \arguments{
 \item{end}{}
 }
-\value{
-
-}
 \description{
 Title
 }

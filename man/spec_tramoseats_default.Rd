@@ -9,9 +9,6 @@ spec_tramoseats_default(name = "rsafull")
 \arguments{
 \item{name}{}
 }
-\value{
-
-}
 \description{
 Title
 }

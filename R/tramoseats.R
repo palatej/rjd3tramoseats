@@ -12,7 +12,7 @@ NULL
 #' @export
 #'
 #' @examples
-tramo<-function(ts, spec="trfull", context=NULL){
+tramo<-function(ts, spec="trfull", context=NULL, userdefined = NULL){
   # TODO : check parameters
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
@@ -30,7 +30,8 @@ tramo<-function(ts, spec="trfull", context=NULL){
   if (is.jnull(jrslt)){
     return (NULL)
   }else{
-    return (tramo_output(jrslt))
+    res = tramo_output(jrslt)
+    return (add_ud_var(res, jrslt, userdefined = userdefined))
   }
 }
 
@@ -44,7 +45,7 @@ tramo<-function(ts, spec="trfull", context=NULL){
 #' @export
 #'
 #' @examples
-fast.tramo<-function(ts, spec="trfull", context=NULL){
+fast.tramo<-function(ts, spec="trfull", context=NULL, userdefined = NULL){
   # TODO : check parameters
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
@@ -57,12 +58,13 @@ fast.tramo<-function(ts, spec="trfull", context=NULL){
       # TODO
       jcontext<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/tramoseats/r/Tramo", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext )
+    jrslt<-.jcall("demetra/tramoseats/r/Tramo", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
   }else{
-    return (regarima_rslts(jrslt))
+    res = regarima_rslts(jrslt)
+    return (add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
 
@@ -91,7 +93,7 @@ tramo_output<-function(jq){
 #' @export
 #'
 #' @examples
-tramoseats<-function(ts, spec="rsafull", context=NULL){
+tramoseats<-function(ts, spec="rsafull", context=NULL, userdefined = NULL){
   # TODO : check parameters
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
@@ -109,7 +111,8 @@ tramoseats<-function(ts, spec="rsafull", context=NULL){
   if (is.jnull(jrslt)){
     return (NULL)
   }else{
-    return (tramoseats_output(jrslt))
+    res = tramoseats_output(jrslt)
+    return (add_ud_var(res, jrslt, userdefined = userdefined))
   }
 }
 
@@ -182,7 +185,7 @@ tramoseats.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Com
 #' @export
 #'
 #' @examples
-fast.tramoseats<-function(ts, spec="rsafull", context=NULL){
+fast.tramoseats<-function(ts, spec="rsafull", context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
     jrslt<-.jcall("demetra/tramoseats/r/TramoSeats", "Ljdplus/tramoseats/TramoSeatsResults;", "process", jts, spec)
@@ -196,7 +199,8 @@ fast.tramoseats<-function(ts, spec="rsafull", context=NULL){
   if (is.jnull(jrslt)){
     return (NULL)
   }else{
-    return (tramoseats_rslts(jrslt))
+    res = tramoseats_rslts(jrslt)
+    return (add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
 

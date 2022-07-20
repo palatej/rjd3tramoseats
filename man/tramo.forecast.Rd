@@ -9,9 +9,6 @@ tramo.forecast(ts, spec = "trfull", nf = -1, context = NULL)
 \arguments{
 \item{context}{}
 }
-\value{
-
-}
 \description{
 Title
 }

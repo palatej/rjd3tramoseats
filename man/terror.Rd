@@ -9,9 +9,6 @@ terror(ts, spec = "trfull", nback = 1, context = NULL)
 \arguments{
 \item{context}{}
 }
-\value{
-
-}
 \description{
 Title
 }

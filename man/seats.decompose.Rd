@@ -16,9 +16,6 @@ seats.decompose(
 \arguments{
 \item{approximation}{}
 }
-\value{
-
-}
 \description{
 Title
 }

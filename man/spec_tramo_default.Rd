@@ -9,9 +9,6 @@ spec_tramo_default(name = "trfull")
 \arguments{
 \item{name}{}
 }
-\value{
-
-}
 \description{
 Title
 }

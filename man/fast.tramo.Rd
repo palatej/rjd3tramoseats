@@ -4,13 +4,10 @@
 \alias{fast.tramo}
 \title{Title}
 \usage{
-fast.tramo(ts, spec = "trfull", context = NULL)
+fast.tramo(ts, spec = "trfull", context = NULL, userdefined = NULL)
 }
 \arguments{
 \item{context}{}
-}
-\value{
-
 }
 \description{
 Title
