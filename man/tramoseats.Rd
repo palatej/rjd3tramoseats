@@ -2,13 +2,37 @@
 % Please edit documentation in R/tramoseats.R
 \name{tramoseats}
 \alias{tramoseats}
-\title{Title}
+\alias{fast.tramoseats}
+\title{Seasonal Adjustment with  TRAMO-SEATS}
 \usage{
 tramoseats(ts, spec = "rsafull", context = NULL, userdefined = NULL)
+
+fast.tramoseats(ts, spec = "rsafull", context = NULL, userdefined = NULL)
 }
 \arguments{
-\item{context}{}
+\item{ts}{a univariate time series}
+
+\item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
+
+\item{context}{the dictionnary of variables.}
+
+\item{userdefined}{a vector containing the additional output variables.}
 }
 \description{
-Title
+Seasonal Adjustment with  TRAMO-SEATS
+}
+\examples{
+sp = spec_tramoseats_default("rsafull")
+y = rjd3toolkit::ABS$X0.2.09.10.M
+fast.tramoseats(y, spec = sp)
+sp = add_outlier(sp,
+                 type = c("AO"), c("2015-01-01", "2010-01-01"))
+sp = set_transform(
+  set_tradingdays(
+    set_easter(sp, enabled = FALSE),
+    option = "workingdays"
+  ),
+  fun = "None"
+)
+fast.tramoseats(y, spec = sp)
 }

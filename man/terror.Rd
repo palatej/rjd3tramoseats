@@ -2,13 +2,19 @@
 % Please edit documentation in R/tramoseats.R
 \name{terror}
 \alias{terror}
-\title{Title}
+\title{TERROR}
 \usage{
 terror(ts, spec = "trfull", nback = 1, context = NULL)
 }
 \arguments{
-\item{context}{}
+\item{ts}{a univariate time series}
+
+\item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
+
+\item{nback}{}
+
+\item{context}{the dictionnary of variables.}
 }
 \description{
-Title
+TERROR
 }

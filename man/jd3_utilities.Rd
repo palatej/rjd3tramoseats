@@ -17,7 +17,7 @@ jd2r_spec_tramoseats(spec)
 r2jd_spec_tramoseats(spec)
 }
 \arguments{
-\item{jtest, s, period, startYear, startPeriod, length, ldt, dt, jparams, start, end, y, m, d, year, month, day, type, p, code, prefix, r, span, rspan, rslt, name, jobj, jrslt}{parameters.}
+\item{spec}{parameters.}
 }
 \description{
 These functions are used in all JDemetra+ 3.0 packages to easily interact between R and Java objects.

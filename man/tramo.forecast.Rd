@@ -2,13 +2,19 @@
 % Please edit documentation in R/tramoseats.R
 \name{tramo.forecast}
 \alias{tramo.forecast}
-\title{Title}
+\title{Forecasts with TRAMO}
 \usage{
 tramo.forecast(ts, spec = "trfull", nf = -1, context = NULL)
 }
 \arguments{
-\item{context}{}
+\item{ts}{a univariate time series}
+
+\item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
+
+\item{nf}{the forecasting horizon (\code{numeric}). The forecast length is in periods (positive values) or years (negative values). By default, the program generates a one-year forecast (\code{nf = -1}).}
+
+\item{context}{the dictionnary of variables.}
 }
 \description{
-Title
+Forecasts with TRAMO
 }
