@@ -131,13 +131,15 @@ tramoseats<-function(ts, spec="rsafull", context=NULL, userdefined = NULL){
 #' @examples
 tramo.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed"), period=0, start=NULL, end=NULL){
   policy=match.arg(policy)
-  if (class(spec) != "JD3_TRAMO_SPEC") stop("Invalid specification type")
+  if (!inherits(spec, "JD3_TRAMO_SPEC"))
+    stop("Invalid specification type")
   jspec<-r2jd_spec_tramo(spec)
   if (is.null(refspec)){
     jrefspec<-.jcall("demetra/tramo/TramoSpec", "Ldemetra/tramo/TramoSpec;", "fromString", "trfull")
 
   }else{
-    if (class(refspec) != "JD3_TRAMO_SPEC") stop("Invalid specification type")
+    if (!inherits(refspec, "JD3_TRAMO_SPEC"))
+      stop("Invalid specification type")
     jrefspec<-r2jd_spec_tramo(refspec)
   }
   jdom<-rjd3toolkit::jdomain(period, start, end)
@@ -160,13 +162,15 @@ tramo.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete
 #' @examples
 tramoseats.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL){
   policy=match.arg(policy)
-  if (class(spec) != "JD3_TRAMOSEATS_SPEC") stop("Invalid specification type")
+  if (!inherits(spec, "JD3_TRAMOSEATS_SPEC"))
+    stop("Invalid specification type")
   jspec<-r2jd_spec_tramoseats(spec)
   if (is.null(refspec)){
     jrefspec<-.jcall("demetra/tramoseats/TramoSeatsSpec", "Ldemetra/tramoseats/TramoSeatsSpec;", "fromString", "rsafull")
 
   }else{
-    if (class(refspec) != "JD3_TRAMOSEATS_SPEC") stop("Invalid specification type")
+    if (!inherits(refspec, "JD3_TRAMOSEATS_SPEC"))
+      stop("Invalid specification type")
     jrefspec<-r2jd_spec_tramoseats(refspec)
   }
   jdom<-rjd3toolkit::jdomain(period, start, end)
