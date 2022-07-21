@@ -10,6 +10,8 @@ regarima_rslts <- function(jrslts){
   return (rjd3modelling::p2r_regarima_rslts(rq))
 }
 
+#' @export
+#' @rdname jd3_utilities
 tramoseats_rslts <- function(jrslts){
   if (is.jnull(jrslts))
     return (NULL)
