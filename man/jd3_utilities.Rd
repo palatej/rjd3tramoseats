@@ -21,7 +21,7 @@ jd2r_spec_tramoseats(spec)
 r2jd_spec_tramoseats(spec)
 }
 \arguments{
-\item{spec}{parameters.}
+\item{spec, jrslts}{parameters.}
 }
 \description{
 These functions are used in all JDemetra+ 3.0 packages to easily interact between R and Java objects.
