@@ -10,7 +10,7 @@ tramo(ts, spec = "trfull", context = NULL, userdefined = NULL)
 fast.tramo(ts, spec = "trfull", context = NULL, userdefined = NULL)
 }
 \arguments{
-\item{ts}{a univariate time series}
+\item{ts}{a univariate time series.}
 
 \item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
 

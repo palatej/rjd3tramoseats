@@ -50,7 +50,7 @@ as it may become numerically unstable when some roots of the MA polynomial are n
 \item \code{"McElroyMatrix"}: it has the same stability issues as the Burman's algorithm.
 }}
 
-\item{bias}{TODO}
+\item{bias}{TODO.}
 }
 \description{
 Set Seats Specification

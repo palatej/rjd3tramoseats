@@ -22,7 +22,7 @@ an object of class \code{"JD3_TRAMOSEATS_SPEC"} (\code{spec_tramoseats_default()
 \code{"JD3_TRAMO_SPEC"} (\code{spec_tramo_default()}).
 }
 \description{
-Set of functions to create default specification associated to the TRAMO-SEATS seasonal adjustment method
+Set of functions to create default specification associated to the TRAMO-SEATS seasonal adjustment method.
 }
 \details{
 The available predefined 'JDemetra+' model specifications are described in the table below:

@@ -29,14 +29,15 @@ tramoseats.refresh(
 \arguments{
 \item{spec}{the current specification}
 
-\item{refspec}{the reference specification. By default this is the \code{"RG4"} or \code{"RSA4"} specification. TODO to explain.}
+\item{refspec}{the reference specification (used to defined the set of models considered).
+By default this is the \code{"TRFull"} or \code{"RSAFull"} specification.}
 
-\item{policy}{the refresh policy}
+\item{policy}{the refresh policy.}
 
 \item{period, start, end}{to specify the frozen domain when \code{policy} equals to \code{"Outliers"} or \code{"Outliers_StochasticComponent"}.}
 }
 \value{
-a new specification
+a new specification.
 }
 \description{
 Refresh Policy

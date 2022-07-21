@@ -22,7 +22,7 @@ tramo.outliers(
 \arguments{
 \item{y}{the dependent variable (\code{ts} object).}
 
-\item{order, seasonal}{the orders of the ARIMA model}
+\item{order, seasonal}{the orders of the ARIMA model.}
 
 \item{mean}{boolean to include or not the mean.}
 

@@ -6,7 +6,7 @@ NULL
 
 #' TRAMO/TRAMO-SEATS Default Specification
 #'
-#' Set of functions to create default specification associated to the TRAMO-SEATS seasonal adjustment method
+#' Set of functions to create default specification associated to the TRAMO-SEATS seasonal adjustment method.
 #'
 #' @param name the name of a predefined specification.
 #'

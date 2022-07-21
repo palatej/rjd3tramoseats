@@ -4,7 +4,7 @@ NULL
 
 #' SEATS Decomposition
 #'
-#' @param sarima SARIMA model (see [rjd3modelling::sarima.model()] )
+#' @param sarima SARIMA model (see [rjd3modelling::sarima.model()]).
 #' @inheritParams set_seats
 #'
 #'

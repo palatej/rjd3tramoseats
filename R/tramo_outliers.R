@@ -5,7 +5,7 @@ NULL
 #' Detect Outliers in TRAMO Model
 #'
 #' @param y the dependent variable (`ts` object).
-#' @param order,seasonal the orders of the ARIMA model
+#' @param order,seasonal the orders of the ARIMA model.
 #' @param mean boolean to include or not the mean.
 #' @param X explanatory varibales.
 #' @param X.td trading days regressors.

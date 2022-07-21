@@ -10,7 +10,7 @@ tramoseats(ts, spec = "rsafull", context = NULL, userdefined = NULL)
 fast.tramoseats(ts, spec = "rsafull", context = NULL, userdefined = NULL)
 }
 \arguments{
-\item{ts}{a univariate time series}
+\item{ts}{a univariate time series.}
 
 \item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
 
