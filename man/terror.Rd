@@ -4,7 +4,12 @@
 \alias{terror}
 \title{TERROR Quality Control of Outliers}
 \usage{
-terror(ts, spec = "trfull", nback = 1, context = NULL)
+terror(
+  ts,
+  spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
+  nback = 1,
+  context = NULL
+)
 }
 \arguments{
 \item{ts}{a univariate time series.}

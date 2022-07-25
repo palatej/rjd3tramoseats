@@ -284,7 +284,7 @@ forecast_names<-c("forecast", "error", "fraw", "efraw")
 #' @examples
 #' terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
 #' @export
-terror<-function(ts, spec="trfull", nback=1, context=NULL){
+terror<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), nback=1, context=NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
     spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
