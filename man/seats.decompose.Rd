@@ -2,23 +2,39 @@
 % Please edit documentation in R/seats.R
 \name{seats.decompose}
 \alias{seats.decompose}
-\title{Title}
+\title{SEATS Decomposition}
 \usage{
 seats.decompose(
   sarima,
-  eps = 2,
-  rmod = 0.5,
-  smod = 0.8,
-  smodatpi = 0.8,
+  seas.tolerance = 2,
+  trend.boundary = 0.5,
+  seas.boundary = 0.8,
+  seas.boundary.unique = 0.8,
   approximation = c("None", "Legacy", "Noisy")
 )
 }
 \arguments{
-\item{approximation}{}
-}
-\value{
+\item{sarima}{SARIMA model (see \code{\link[rjd3modelling:sarima.model]{rjd3modelling::sarima.model()}}).}
 
+\item{seas.tolerance}{numeric: the seasonal tolerance. The tolerance (measured in degrees) to allocate the AR non-real roots
+to the seasonal component (if the modulus of the inverse complex AR root is greater than the trend boundary
+and the frequency of this root differs from one of the seasonal frequencies by less than Seasonal tolerance)
+or the transitory component (otherwise).}
+
+\item{trend.boundary}{numeric: the trend boundary. The boundary beyond which an AR root is integrated in the trend component.
+If the modulus of the inverse real root is greater than the trend boundary, the AR root is integrated in the trend component.
+Below this value, the root is integrated in the transitory component.}
+
+\item{seas.boundary}{numeric: the seasonal boundary. The boundary beyond which a negative AR root is integrated in the seasonal component.}
+
+\item{seas.boundary.unique}{numeric: the seasonal boundary (unique). The boundary beyond which a negative AR root is integrated
+in the seasonal component, when the root is the unique seasonal root.}
+
+\item{approximation}{character: the approximation mode. When the ARIMA model estimated by TRAMO does not accept an admissible decomposition, SEATS: \code{"None"} - performs an approximation; \code{"Legacy"} - replaces the model with a decomposable one; \code{"Noisy"} - estimates a new model by adding a white noise to the non-admissible model estimated by TRAMO.}
 }
 \description{
-Title
+SEATS Decomposition
+}
+\examples{
+seats.decompose(rjd3modelling::sarima.model(period = 12,phi = c(0,1),bd = 1))
 }

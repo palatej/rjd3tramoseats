@@ -2,16 +2,52 @@
 % Please edit documentation in R/tramoseats.R
 \name{tramo}
 \alias{tramo}
-\title{Title}
+\alias{fast.tramo}
+\title{TRAMO model, pre-adjustment in TRAMO-SEATS}
 \usage{
-tramo(ts, spec = "trfull", context = NULL)
+tramo(
+  ts,
+  spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
+  context = NULL,
+  userdefined = NULL
+)
+
+fast.tramo(
+  ts,
+  spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
+  context = NULL,
+  userdefined = NULL
+)
 }
 \arguments{
-\item{context}{}
+\item{ts}{a univariate time series.}
+
+\item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
+
+\item{context}{the dictionnary of variables.}
+
+\item{userdefined}{a vector containing the additional output variables.}
 }
 \value{
-
+the \code{tramo()} function returns a list with the results (\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result specification, while \code{fast.tramo()} is a faster function that only returns the results.
 }
 \description{
-Title
+TRAMO model, pre-adjustment in TRAMO-SEATS
+}
+\examples{
+y = rjd3toolkit::ABS$X0.2.09.10.M
+sp = spec_tramo_default("trfull")
+sp = add_outlier(sp,
+                 type = c("AO"), c("2015-01-01", "2010-01-01"))
+fast.tramo(y, spec = sp)
+sp = set_transform(
+  set_tradingdays(
+    set_easter(sp, enabled = FALSE),
+    option = "workingdays"
+  ),
+  fun = "None"
+)
+fast.tramo(y, spec = sp)
+sp = set_outlier(sp, outliers.type = c("AO"))
+fast.tramo(y, spec = sp)
 }

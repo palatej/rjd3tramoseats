@@ -23,7 +23,7 @@
 #' - `"KalmanSmoother"`: it is not disturbed by the (quasi-) unit roots in MA;
 #' - `"McElroyMatrix"`: it has the same stability issues as the Burman's algorithm.
 #' @param bcasts,fcasts numeric: the number of backasts (`bcasts`) or forecasts (`fcasts`) used in the decomposition in periods (positive values) or years (negative values).
-#' @param bias TODO
+#' @param bias TODO.
 #' @export
 set_seats <- function(x,
                       approximation = c(NA, "None", "Legacy", "Noisy"),

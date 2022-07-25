@@ -2,7 +2,7 @@
 % Please edit documentation in R/tramo_outliers.R
 \name{tramo.outliers}
 \alias{tramo.outliers}
-\title{Title}
+\title{Detect Outliers in TRAMO Model}
 \usage{
 tramo.outliers(
   y,
@@ -20,11 +20,30 @@ tramo.outliers(
 )
 }
 \arguments{
-\item{ml}{}
+\item{y}{the dependent variable (\code{ts} object).}
+
+\item{order, seasonal}{the orders of the ARIMA model.}
+
+\item{mean}{boolean to include or not the mean.}
+
+\item{X}{explanatory varibales.}
+
+\item{X.td}{trading days regressors.}
+
+\item{ao, ls, so, tc}{boolean to indicate which outliers are detected}
+
+\item{cv}{\code{numeric}. The entered critical value for the outliers' detection procedure.
+If equal to 0 the critical value for the outliers' detection procedure is automatically determined
+by the number of observations.}
+
+\item{ml}{Use of maximum likelihood (otherwise approximation by means of Hannan-Rissanen).}
 }
 \value{
-
+a \code{"JDSTS"} object.
 }
 \description{
-Title
+Detect Outliers in TRAMO Model
+}
+\examples{
+tramo.outliers(rjd3toolkit::ABS$X0.2.09.10.M)
 }

@@ -2,16 +2,60 @@
 % Please edit documentation in R/tramoseats.R
 \name{tramoseats}
 \alias{tramoseats}
-\title{Title}
+\alias{fast.tramoseats}
+\alias{jtramoseats}
+\title{Seasonal Adjustment with  TRAMO-SEATS}
 \usage{
-tramoseats(ts, spec = "rsafull", context = NULL)
+tramoseats(
+  ts,
+  spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
+  context = NULL,
+  userdefined = NULL
+)
+
+fast.tramoseats(
+  ts,
+  spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
+  context = NULL,
+  userdefined = NULL
+)
+
+jtramoseats(
+  ts,
+  spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
+  context = NULL,
+  userdefined = NULL
+)
 }
 \arguments{
-\item{context}{}
+\item{ts}{a univariate time series.}
+
+\item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
+
+\item{context}{the dictionnary of variables.}
+
+\item{userdefined}{a vector containing the additional output variables.}
 }
 \value{
-
+the \code{tramoseats()} function returns a list with the results, the estimation specification and the result specification, while \code{fast.tramoseats()} is a faster function that only returns the results.
+The \code{jtramoseats()} functions only results the java object to custom outputs in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to
+get the list of variables and \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable).
 }
 \description{
-Title
+Seasonal Adjustment with  TRAMO-SEATS
+}
+\examples{
+sp = spec_tramoseats_default("rsafull")
+y = rjd3toolkit::ABS$X0.2.09.10.M
+fast.tramoseats(y, spec = sp)
+sp = add_outlier(sp,
+                 type = c("AO"), c("2015-01-01", "2010-01-01"))
+sp = set_transform(
+  set_tradingdays(
+    set_easter(sp, enabled = FALSE),
+    option = "workingdays"
+  ),
+  fun = "None"
+)
+fast.tramoseats(y, spec = sp)
 }

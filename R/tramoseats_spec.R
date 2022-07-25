@@ -4,29 +4,48 @@ NULL
 
 
 
-#' Title
+#' TRAMO/TRAMO-SEATS Default Specification
 #'
-#' @param name
+#' Set of functions to create default specification associated to the TRAMO-SEATS seasonal adjustment method.
 #'
-#' @return
+#' @param name the name of a predefined specification.
+#'
+#' @return an object of class `"JD3_TRAMOSEATS_SPEC"` (`spec_tramoseats_default()`) or
+#' `"JD3_TRAMO_SPEC"` (`spec_tramo_default()`).
+#'
+#' @details
+#' The available predefined 'JDemetra+' model specifications are described in the table below:
+#'
+#' \tabular{rrrrrrrr}{
+#' \strong{Identifier} |\tab \strong{Log/level detection} |\tab \strong{Outliers detection} |\tab \strong{Calendar effects} |\tab \strong{ARIMA}\cr
+#' RSA0/TR0 |\tab \emph{NA} |\tab \emph{NA} |\tab \emph{NA} |\tab Airline(+mean)\cr
+#' RSA1/TR1 |\tab automatic |\tab AO/LS/TC |\tab \emph{NA} |\tab Airline(+mean)\cr
+#' RSA2/TR2 |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab Airline(+mean)\cr
+#' RSA3/TR3 |\tab automatic |\tab AO/LS/TC |\tab \emph{NA} |\tab automatic\cr
+#' RSA4/TR3 |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab automatic\cr
+#' RSA5/TR5 |\tab automatic |\tab AO/LS/TC |\tab 7 td vars + Easter |\tab automatic\cr
+#' RSAfull/TRfull |\tab automatic |\tab AO/LS/TC |\tab automatic |\tab automatic
+#' }
+#' @name tramoseats_spec
+#' @rdname tramoseats_spec
 #' @export
-#'
-#' @examples
-spec_tramo_default<-function(name="trfull"){
+spec_tramo_default<-function(name=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")){
+  name = gsub("rsa", "tr", tolower(name), fixed = TRUE)
+  name = match.arg(name[1],
+                   choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
+  )
   jspec<-.jcall("demetra/tramo/TramoSpec", "Ldemetra/tramo/TramoSpec;", "fromString", name)
   return (jd2r_spec_tramo(jspec))
 }
 
 
-#' Title
-#'
-#' @param name
-#'
-#' @return
+#' @rdname tramoseats_spec
 #' @export
-#'
-#' @examples
-spec_tramoseats_default<-function(name="rsafull"){
+spec_tramoseats_default<-function(name=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")){
+  name = gsub("tr", "rsa", tolower(name), fixed = TRUE)
+  name = match.arg(name[1],
+                   choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
+  )
   jspec<-.jcall("demetra/tramoseats/TramoSeatsSpec", "Ldemetra/tramoseats/TramoSeatsSpec;", "fromString", name)
   return (jd2r_spec_tramoseats(jspec))
 }
@@ -78,7 +97,7 @@ p2r_spec_tramo<-function(pspec){
   transform=list(fn=rjd3toolkit::enum_extract(modelling.Transformation, t$transformation), fct=t$fct)
   a<-pspec$automodel
   automodel=list(enabled=a$enabled, acceptdef=a$accept_def, cancel=a$cancel, ub1=a$ub1, ub2=a$ub2, pcr=a$pcr, pc=a$pc, tsig=a$tsig, amicompare=a$ami_compare)
-  arima=rjd3modelling:::p2r_spec_sarima(pspec$arima)
+  arima=rjd3modelling::p2r_spec_sarima(pspec$arima)
   o<-pspec$outlier
   outlier<-list(enabled=o$enabled, span=rjd3toolkit::p2r_span(o$span), ao=o$ao, ls=o$ls, tc=o$tc, so=o$so, va=o$va, tcrate=o$tcrate, ml=o$ml)
   r<-pspec$regression
@@ -96,8 +115,8 @@ p2r_spec_tramo<-function(pspec){
     mean=rjd3toolkit::p2r_parameter(r$mean),
     td=td,
     easter=easter,
-    outliers=rjd3modelling:::p2r_outliers(r$outliers),
-    ramps=rjd3modelling:::p2r_ramps(r$ramps)
+    outliers=rjd3modelling::p2r_outliers(r$outliers),
+    ramps=rjd3modelling::p2r_ramps(r$ramps)
   )
   e<-pspec$estimate
   estimate<-list(span=rjd3toolkit::p2r_span(e$span), ml=e$ml, tol=e$tol, ubp=e$ubp)
@@ -143,13 +162,13 @@ r2p_spec_tramo<-function(rspec){
   pspec$automodel$ami_compare<-rspec$automodel$amicompare
 
   #ARIMA
-  pspec$arima<-rjd3modelling:::r2p_spec_sarima(rspec$arima)
+  pspec$arima<-rjd3modelling::r2p_spec_sarima(rspec$arima)
 
   #REGRESSION
 
   pspec$regression$mean=rjd3toolkit::r2p_parameter(rspec$regression$mean)
-  pspec$regression$outliers=rjd3modelling:::r2p_outliers(rspec$regression$outliers)
-  pspec$regression$ramps=rjd3modelling:::r2p_ramps(rspec$regression$ramps)
+  pspec$regression$outliers=rjd3modelling::r2p_outliers(rspec$regression$outliers)
+  pspec$regression$ramps=rjd3modelling::r2p_ramps(rspec$regression$ramps)
 
   #TD
   pspec$regression$td$td<-rjd3toolkit::enum_sof(modelling.TradingDays, rspec$regression$td$td)
@@ -216,7 +235,7 @@ p2r_spec_tramoseats<-function(pspec){
   return (structure(list(
     tramo=p2r_spec_tramo(pspec$tramo),
     seats=p2r_spec_seats(pspec$seats),
-    benchmarking=rjd3sa:::p2r_spec_benchmarking(pspec$benchmarking)
+    benchmarking=rjd3sa::p2r_spec_benchmarking(pspec$benchmarking)
     ), class="JD3_TRAMOSEATS_SPEC"))
 }
 
@@ -224,6 +243,6 @@ r2p_spec_tramoseats<-function(r){
   p<-tramoseats.Spec$new()
   p$tramo<-r2p_spec_tramo(r$tramo)
   p$seats<-r2p_spec_seats(r$seats)
-  p$benchmarking<-rjd3sa:::r2p_spec_benchmarking(r$benchmarking)
+  p$benchmarking<-rjd3sa::r2p_spec_benchmarking(r$benchmarking)
   return (p)
 }
