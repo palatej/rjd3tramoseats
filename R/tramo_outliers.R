@@ -13,7 +13,7 @@ NULL
 #' @param cv  `numeric`. The entered critical value for the outliers' detection procedure.
 #' If equal to 0 the critical value for the outliers' detection procedure is automatically determined
 #' by the number of observations.
-#' @param ml
+#' @param ml Use of maximum likelihood (otherwise approximation by means of Hannan-Rissanen).
 #'
 #' @return a `"JDSTS"` object.
 #'

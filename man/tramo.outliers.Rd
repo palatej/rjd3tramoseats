@@ -36,7 +36,7 @@ tramo.outliers(
 If equal to 0 the critical value for the outliers' detection procedure is automatically determined
 by the number of observations.}
 
-\item{ml}{}
+\item{ml}{Use of maximum likelihood (otherwise approximation by means of Hannan-Rissanen).}
 }
 \value{
 a \code{"JDSTS"} object.
