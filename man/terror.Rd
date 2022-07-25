@@ -2,7 +2,7 @@
 % Please edit documentation in R/tramoseats.R
 \name{terror}
 \alias{terror}
-\title{TERROR}
+\title{TERROR Quality Control of Outliers}
 \usage{
 terror(ts, spec = "trfull", nback = 1, context = NULL)
 }
@@ -11,10 +11,29 @@ terror(ts, spec = "trfull", nback = 1, context = NULL)
 
 \item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
 
-\item{nback}{}
+\item{nback}{number of last observations considered for the quality check.}
 
 \item{context}{the dictionnary of variables.}
 }
+\value{
+a \code{mts} object with 7 variables:
+\itemize{
+\item \code{actual} the actual data at the end of the series.
+\item \code{forecast} the forecast of the actual data at the end of the series.
+\item \code{error} the absolute errors (= observed - forecasts).
+\item \code{rel.error} relative errors ("scores") : ratios between the forecast
+errors and the standard deviation of the forecasts of the last observations
+(positive values mean under-estimation).
+\item \code{raw} the transformed series. More especially, if the chosen model implies
+a log-transformation, the values are obtained after a log-transformation.
+Other transformations, such leap year corrections or length-of periods corrections may also be used.
+\item \code{fraw} the forecast of the transformed series.
+\item \code{efraw} the absolute errors of the transformed series.
+}
+}
 \description{
-TERROR
+TRAMO for ERRORs (TERROR) controls the quality of the data by checking outliers at the end of the series
+}
+\examples{
+terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
 }

@@ -28,10 +28,14 @@ NULL
 #' sp = set_outlier(sp, outliers.type = c("AO"))
 #' fast.tramo(y, spec = sp)
 #' @export
-tramo<-function(ts, spec="trfull", context=NULL, userdefined = NULL){
+tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), context=NULL, userdefined = NULL){
   # TODO : check parameters
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
+    spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
+    spec = match.arg(spec[1],
+                     choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
+    )
     jrslt<-.jcall("demetra/tramoseats/r/Tramo", "Ljdplus/tramo/TramoOutput;", "fullProcess", jts, spec)
   }else{
     jspec<-r2jd_spec_tramo(spec)
@@ -53,10 +57,14 @@ tramo<-function(ts, spec="trfull", context=NULL, userdefined = NULL){
 
 #' @export
 #' @rdname tramo
-fast.tramo<-function(ts, spec="trfull", context=NULL, userdefined = NULL){
+fast.tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), context=NULL, userdefined = NULL){
   # TODO : check parameters
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
+    spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
+    spec = match.arg(spec[1],
+                     choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
+    )
     jrslt<-.jcall("demetra/tramoseats/r/Tramo", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, spec)
   }else{
     jspec<-r2jd_spec_tramo(spec)
@@ -111,10 +119,14 @@ tramo_output<-function(jq){
 #' )
 #' fast.tramoseats(y, spec = sp)
 #' @export
-tramoseats<-function(ts, spec="rsafull", context=NULL, userdefined = NULL){
+tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
   # TODO : check parameters
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
+    spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
+    spec = match.arg(spec[1],
+                     choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
+    )
     jrslt<-.jcall("demetra/tramoseats/r/TramoSeats", "Ldemetra/tramoseats/io/protobuf/TramoSeatsOutput;", "fullProcess", jts, spec)
   }else{
     jspec<-r2jd_spec_tramoseats(spec)
@@ -136,9 +148,13 @@ tramoseats<-function(ts, spec="rsafull", context=NULL, userdefined = NULL){
 
 #' @export
 #' @rdname tramoseats
-fast.tramoseats<-function(ts, spec="rsafull", context=NULL, userdefined = NULL){
+fast.tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
+    spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
+    spec = match.arg(spec[1],
+                     choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
+    )
     jrslt<-.jcall("demetra/tramoseats/r/TramoSeats", "Ljdplus/tramoseats/TramoSeatsResults;", "process", jts, spec)
   }else{
     jspec<-r2jd_spec_tramoseats(spec)
@@ -241,19 +257,40 @@ tramoseats.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Com
 terror_names<-c("actual", "forecast", "error", "rel. error", "raw", "fraw", "efraw")
 forecast_names<-c("forecast", "error", "fraw", "efraw")
 
-#' TERROR
+#' TERROR Quality Control of Outliers
+#'
+#' TRAMO for ERRORs (TERROR) controls the quality of the data by checking outliers at the end of the series
 #'
 #' @inheritParams tramo
-#' @param nback
+#' @param nback number of last observations considered for the quality check.
 #'
-#' @return
-#' @export
+#' @return a `mts` object with 7 variables:
+#' - `actual` the actual data at the end of the series.
+#'
+#' - `forecast` the forecast of the actual data at the end of the series.
+#'
+#' - `error` the absolute errors (= observed - forecasts).
+#'
+#' - `rel.error` relative errors ("scores") : ratios between the forecast
+#'errors and the standard deviation of the forecasts of the last observations
+#'(positive values mean under-estimation).
+#'
+#' - `raw` the transformed series. More especially, if the chosen model implies
+#' a log-transformation, the values are obtained after a log-transformation.
+#' Other transformations, such leap year corrections or length-of periods corrections may also be used.
+#' - `fraw` the forecast of the transformed series.
+#' - `efraw` the absolute errors of the transformed series.
 #'
 #' @examples
+#' terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
+#' @export
 terror<-function(ts, spec="trfull", nback=1, context=NULL){
-  # TODO : check parameters
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
+    spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
+    spec = match.arg(spec[1],
+                     choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
+    )
     jrslt<-.jcall("demetra/tramoseats/r/Terror", "Ldemetra/math/matrices/Matrix;", "process", jts, spec, as.integer(nback))
   }else{
     jspec<-r2jd_spec_tramo(spec)
@@ -268,7 +305,8 @@ terror<-function(ts, spec="trfull", nback=1, context=NULL){
   if (is.jnull(jrslt)){
     return (NULL)
   }else{
-    rslt<-rjd3toolkit::matrix_jd2r(jrslt)
+    rslt <- rjd3toolkit::matrix_jd2r(jrslt)
+    rslt <- ts(rslt, end = end(ts), frequency = frequency(ts))
     colnames(rslt)<-terror_names
     return (rslt)
   }
@@ -279,14 +317,26 @@ terror<-function(ts, spec="trfull", nback=1, context=NULL){
 #' @inheritParams tramo
 #' @param nf the forecasting horizon (`numeric`). The forecast length is in periods (positive values) or years (negative values). By default, the program generates a one-year forecast (`nf = -1`).
 #'
-#' @export
+#' @return a `mts` object with 7 variables:
+#' - `forecast` the forecast of the actual data at the end of the series.
 #'
-tramo.forecast<-function(ts, spec="trfull", nf=-1, context=NULL){
+#' - `error` standard deviation of the forecast.
+#'
+#' - `fraw` the forecast of the transformed series.
+#' - `efraw` the standard deviation of the forecast of the transformed series.
+#' @examples
+#' tramo.forecast(rjd3toolkit::ABS$X0.2.09.10.M)
+#' @export
+tramo.forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), nf=-1, context=NULL){
   # TODO : check parameters
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (nf<0) nf<-frequency(ts)*(-nf)
 
   if (is.character(spec)){
+    spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
+    spec = match.arg(spec[1],
+                     choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
+    )
     jrslt<-.jcall("demetra/tramoseats/r/Tramo", "Ldemetra/math/matrices/Matrix;", "forecast", jts, spec, as.integer(nf))
   }else{
     jspec<-r2jd_spec_tramo(spec)
@@ -302,6 +352,8 @@ tramo.forecast<-function(ts, spec="trfull", nf=-1, context=NULL){
     return (NULL)
   }else{
     rslt<-rjd3toolkit::matrix_jd2r(jrslt)
+    rslt <- ts(rslt, frequency = frequency(ts),
+               start = time(ts)[length(ts)] + 1/frequency(ts))
     colnames(rslt)<-forecast_names
     return (rslt)
   }

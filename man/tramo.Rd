@@ -5,9 +5,19 @@
 \alias{fast.tramo}
 \title{TRAMO model, pre-adjustment in TRAMO-SEATS}
 \usage{
-tramo(ts, spec = "trfull", context = NULL, userdefined = NULL)
+tramo(
+  ts,
+  spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
+  context = NULL,
+  userdefined = NULL
+)
 
-fast.tramo(ts, spec = "trfull", context = NULL, userdefined = NULL)
+fast.tramo(
+  ts,
+  spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
+  context = NULL,
+  userdefined = NULL
+)
 }
 \arguments{
 \item{ts}{a univariate time series.}

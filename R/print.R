@@ -1,4 +1,4 @@
-#'@importFrom stats printCoefmat
+#'@importFrom stats printCoefmat end time
 #'@importFrom utils capture.output
 print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
                               ...){

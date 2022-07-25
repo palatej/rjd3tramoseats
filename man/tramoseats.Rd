@@ -5,9 +5,19 @@
 \alias{fast.tramoseats}
 \title{Seasonal Adjustment with  TRAMO-SEATS}
 \usage{
-tramoseats(ts, spec = "rsafull", context = NULL, userdefined = NULL)
+tramoseats(
+  ts,
+  spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
+  context = NULL,
+  userdefined = NULL
+)
 
-fast.tramoseats(ts, spec = "rsafull", context = NULL, userdefined = NULL)
+fast.tramoseats(
+  ts,
+  spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
+  context = NULL,
+  userdefined = NULL
+)
 }
 \arguments{
 \item{ts}{a univariate time series.}

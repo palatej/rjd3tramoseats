@@ -4,7 +4,12 @@
 \alias{tramo.forecast}
 \title{Forecasts with TRAMO}
 \usage{
-tramo.forecast(ts, spec = "trfull", nf = -1, context = NULL)
+tramo.forecast(
+  ts,
+  spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
+  nf = -1,
+  context = NULL
+)
 }
 \arguments{
 \item{ts}{a univariate time series.}
@@ -15,6 +20,18 @@ tramo.forecast(ts, spec = "trfull", nf = -1, context = NULL)
 
 \item{context}{the dictionnary of variables.}
 }
+\value{
+a \code{mts} object with 7 variables:
+\itemize{
+\item \code{forecast} the forecast of the actual data at the end of the series.
+\item \code{error} standard deviation of the forecast.
+\item \code{fraw} the forecast of the transformed series.
+\item \code{efraw} the standard deviation of the forecast of the transformed series.
+}
+}
 \description{
 Forecasts with TRAMO
+}
+\examples{
+tramo.forecast(rjd3toolkit::ABS$X0.2.09.10.M)
 }
