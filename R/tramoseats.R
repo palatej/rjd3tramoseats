@@ -118,6 +118,9 @@ tramo_output<-function(jq){
 #'   fun = "None"
 #' )
 #' fast.tramoseats(y, spec = sp)
+#' @return the `tramoseats()` function returns a list with the results, the estimation specification and the result specification, while `fast.tramoseats()` is a faster function that only returns the results.
+#' The `jtramoseats()` functions only results the java object to custom outputs in other packages (use [rjd3toolkit::dictionary()] to
+#' get the list of variables and [rjd3toolkit::result()] to get a specific variable).
 #' @export
 tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
   # TODO : check parameters
@@ -168,6 +171,31 @@ fast.tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
   }else{
     res = tramoseats_rslts(jrslt)
     return (add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+  }
+}
+
+#' @export
+#' @rdname tramoseats
+jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
+  jts<-rjd3toolkit::ts_r2jd(ts)
+  if (is.character(spec)){
+    spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
+    spec = match.arg(spec[1],
+                     choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
+    )
+    jrslt<-.jcall("demetra/tramoseats/r/TramoSeats", "Ljdplus/tramoseats/TramoSeatsResults;", "process", jts, spec)
+  }else{
+    jspec<-r2jd_spec_tramoseats(spec)
+    if (is.null(context)){
+      jcontext<-.jnull("demetra/util/r/Dictionary")
+    }
+    jrslt<-.jcall("demetra/tramoseats/r/TramoSeats", "Ljdplus/tramoseats/TramoSeatsResults;", "process", jts, jspec, jcontext)
+  }
+  if (is.jnull(jrslt)){
+    return (NULL)
+  }else{
+    res = rjd3toolkit::jd3Object(jrslt, result = TRUE)
+    return (res)
   }
 }
 
