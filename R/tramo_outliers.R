@@ -46,8 +46,7 @@ tramo.outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=F,
   ll0<-rjd3toolkit::proc_likelihood(jtramo, "initiallikelihood.")
   ll1<-rjd3toolkit::proc_likelihood(jtramo, "finallikelihood.")
 
-  return
-  (structure(list(
+  return(structure(list(
     model=model,
     likelihood=list(initial=ll0, final=ll1)),
     class="JDSTS"))
