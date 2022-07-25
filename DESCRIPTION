@@ -24,10 +24,10 @@ Imports:
   rjd3arima (>= 0.3.2)
 SystemRequirements: Java JRE 17 or higher
 License: EUPL
-URL: https://github.com/jdemetra/rjd3tramoseats
+URL: https://github.com/palatej/rjd3tramoseats
 RoxygenNote: 7.2.0
 Roxygen: list(markdown = TRUE)
-BugReports: https://github.com/jdemetra/rjd3tramoseats/issues
+BugReports: https://github.com/palatej/rjd3tramoseats/issues
 Encoding: UTF-8
 Collate: 
     'print.R'
