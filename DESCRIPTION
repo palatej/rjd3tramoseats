@@ -27,7 +27,7 @@ License: EUPL
 URL: https://github.com/jdemetra/rjd3tramoseats
 RoxygenNote: 7.2.0
 Roxygen: list(markdown = TRUE)
-BugReports: https://github.com/jdemetra/rjdemetra3/issues
+BugReports: https://github.com/jdemetra/rjd3tramoseats/issues
 Encoding: UTF-8
 Collate: 
     'print.R'
