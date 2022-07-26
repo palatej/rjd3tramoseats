@@ -47,7 +47,7 @@ p2r_seats_rslts<-function(p){
 
 #' @importFrom rjd3sa sa.decomposition
 #' @export
-sa.decomposition.JD3_TRAMOSEATS_RSLTS<-function(x){
+sa.decomposition.JD3_TRAMOSEATS_RSLTS<-function(x, ...){
   if (is.null(x)) return (NULL)
   return (rjd3sa::sadecomposition(x$final$series$data,
                                 x$final$sa$data,
@@ -61,7 +61,9 @@ sa.decomposition.JD3_TRAMOSEATS_RSLTS<-function(x){
 
 
 #' @export
-sa.decomposition.JD3_TRAMOSEATS_OUTPUT<-function(x){
+sa.decomposition.JD3_TRAMOSEATS_OUTPUT<-function(x, ...){
   return (rjd3sa::sadecomposition(x$result))
 }
+
+
 

@@ -209,7 +209,7 @@ tramoseats_output<-function(jq){
     estimation_spec=p2r_spec_tramoseats(p$estimation_spec),
     result_spec=p2r_spec_tramoseats(p$result_spec)
   ),
-  class="JD3TRAMOSEATS_OUTPUT")
+  class="JD3_TRAMOSEATS_OUTPUT")
   )
 
 }

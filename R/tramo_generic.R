@@ -31,6 +31,10 @@ summary.JD3_TRAMO_OUTPUT <- function(object, ...){
 print.JD3_TRAMO_OUTPUT <- function(x, ...){
   print(x$result, ...)
 }
+#' @export
+diagnostics.JD3_TRAMO_OUTPUT <- function(x, ...){
+  diagnostics(x$result, ...)
+}
 
 #' @export
 coef.JD3_TRAMOSEATS_OUTPUT <- function(object, component = c("regression", "arima", "both"), ...){
