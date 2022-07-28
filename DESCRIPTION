@@ -24,7 +24,7 @@ Imports:
 SystemRequirements: Java JRE 17 or higher
 License: EUPL
 URL: https://github.com/palatej/rjd3tramoseats
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/palatej/rjd3tramoseats/issues
 Encoding: UTF-8

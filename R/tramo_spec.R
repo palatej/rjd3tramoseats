@@ -6,12 +6,28 @@ add_outlier.JD3_TRAMOSEATS_SPEC <- function(x,
                             ...)
   x
 }
+#' @importFrom rjd3arima remove_outlier
+#' @export
+remove_outlier.JD3_TRAMOSEATS_SPEC <- function(x,
+                                            ...){
+  x$tramo <- remove_outlier(x$tramo,
+                         ...)
+  x
+}
 #' @importFrom rjd3arima add_ramp
 #' @export
 add_ramp.JD3_TRAMOSEATS_SPEC <- function(x,
                                   ...){
   x$tramo <- add_ramp(x$tramo,
                          ...)
+  x
+}
+#' @importFrom rjd3arima remove_ramp
+#' @export
+remove_ramp.JD3_TRAMOSEATS_SPEC <- function(x,
+                                         ...){
+  x$tramo <- remove_ramp(x$tramo,
+                      ...)
   x
 }
 #' @importFrom rjd3arima set_arima
