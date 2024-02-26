@@ -58,7 +58,7 @@ in a domain of constraints. See details and examples.</p>
 <span>  <span class="va">spec</span>,</span>
 <span>  refspec <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  policy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FreeParameters"</span>, <span class="st">"Complete"</span>, <span class="st">"Outliers_StochasticComponent"</span>, <span class="st">"Outliers"</span>,</span>
-<span>    <span class="st">"FixedParameters"</span>, <span class="st">"FixedAutoRegressiveParameters"</span>, <span class="st">"Fixed"</span><span class="op">)</span>,</span>
+<span>    <span class="st">"FixedParameters"</span>, <span class="st">"FixedAutoRegressiveParameters"</span>, <span class="st">"Fixed"</span>, <span class="st">"Current"</span><span class="op">)</span>,</span>
 <span>  period <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  start <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  end <span class="op">=</span> <span class="cn">NULL</span></span>
@@ -91,10 +91,10 @@ By default this is the <code>"TRfull"</code> or <code>"RSAfull"</code> specifica
 
 
 <dt>period, start, end</dt>
-<dd><p>to specify the span on which outliers will not be re-identified (i.e.: re-detected) when <code>policy = "Outliers"</code>
-or <code>policy = "Outliers_StochasticComponent"</code>.
+<dd><p>additional parameters used when outliers are partially re-estimated (<code>policy = "Outliers"</code>) or to specify the span on which additive outliers are introduced,
+normally at the end of the series  (<code>policy = "Current"</code>).
 Span definition: <code>period</code>: numeric, number of observations in a year (12, 4...).
-<code>start</code> and <code>end</code>: first and last date from which outliers will not be re-identfied,
+<code>start</code> and <code>end</code>: first and last date (included) where additive outliers are introduced or, in the case of re-estimation of outliers, start of the re-estimation (end is unused),
 defined as arrays of two elements: year and first period (for example, if <code>period = 12</code>, <code>c(1980, 1)</code> for January 1980).
 If they are not specified, the outliers will be re-identified on the whole series.</p></dd>
 
@@ -136,12 +136,13 @@ which might have led to strong revisions.</p>
 <span class="r-in"><span><span class="co"># raw series for first estimation</span></span></span>
 <span class="r-in"><span><span class="va">y_raw</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/window.html" class="external-link">window</a></span><span class="op">(</span><span class="va">y</span>,end <span class="op">=</span> <span class="fl">2009</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># raw series for second (refreshed) estimation</span></span></span>
-<span class="r-in"><span><span class="va">y_new</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/window.html" class="external-link">window</a></span><span class="op">(</span><span class="va">y</span>,end <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y_new</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/window.html" class="external-link">window</a></span><span class="op">(</span><span class="va">y</span>,start <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># specification for first estimation</span></span></span>
 <span class="r-in"><span><span class="va">spec_ts_1</span><span class="op">&lt;-</span><span class="fu"><a href="tramoseats_spec.html">tramoseats_spec</a></span><span class="op">(</span><span class="st">"RSAFull"</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> '.p2r_ivs' is not an exported object from 'namespace:rjd3toolkit'</span>
 <span class="r-in"><span><span class="co"># first estimation</span></span></span>
 <span class="r-in"><span><span class="va">sa_ts</span><span class="op">&lt;-</span> <span class="fu"><a href="tramoseats.html">tramoseats</a></span><span class="op">(</span><span class="va">y_raw</span>, <span class="va">spec_ts_1</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .jcall("jdplus/tramoseats/base/r/TramoSeats", "[B", "toBuffer",     jq):</span> java.lang.NoSuchMethodError: 'jdplus.toolkit.base.protobuf.regarima.RegArimaProtos$RegArimaModel jdplus.toolkit.base.protobuf.regarima.RegArimaEstimationProto.convert(jdplus.toolkit.base.core.regsarima.regular.RegSarimaModel)'</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'spec_ts_1' not found</span>
 <span class="r-in"><span><span class="co"># refreshing the specification</span></span></span>
 <span class="r-in"><span><span class="va">current_result_spec</span> <span class="op">&lt;-</span> <span class="va">sa_ts</span><span class="op">$</span><span class="va">result_spec</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sa_ts' not found</span>
