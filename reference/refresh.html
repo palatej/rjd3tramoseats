@@ -25,6 +25,9 @@ in a domain of constraints. See details and examples."><!-- mathjax --><script s
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -139,22 +142,16 @@ which might have led to strong revisions.</p>
 <span class="r-in"><span><span class="va">y_new</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/window.html" class="external-link">window</a></span><span class="op">(</span><span class="va">y</span>,start <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># specification for first estimation</span></span></span>
 <span class="r-in"><span><span class="va">spec_ts_1</span><span class="op">&lt;-</span><span class="fu"><a href="tramoseats_spec.html">tramoseats_spec</a></span><span class="op">(</span><span class="st">"RSAFull"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> '.p2r_ivs' is not an exported object from 'namespace:rjd3toolkit'</span>
 <span class="r-in"><span><span class="co"># first estimation</span></span></span>
 <span class="r-in"><span><span class="va">sa_ts</span><span class="op">&lt;-</span> <span class="fu"><a href="tramoseats.html">tramoseats</a></span><span class="op">(</span><span class="va">y_raw</span>, <span class="va">spec_ts_1</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'spec_ts_1' not found</span>
 <span class="r-in"><span><span class="co"># refreshing the specification</span></span></span>
 <span class="r-in"><span><span class="va">current_result_spec</span> <span class="op">&lt;-</span> <span class="va">sa_ts</span><span class="op">$</span><span class="va">result_spec</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sa_ts' not found</span>
 <span class="r-in"><span><span class="va">current_domain_spec</span> <span class="op">&lt;-</span> <span class="va">sa_ts</span><span class="op">$</span><span class="va">estimation_spec</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'sa_ts' not found</span>
 <span class="r-in"><span><span class="va">spec_ts_ref</span> <span class="op">&lt;-</span> <span class="fu">tramoseats_refresh</span><span class="op">(</span><span class="va">current_result_spec</span>, <span class="co"># point spec to be refreshed</span></span></span>
 <span class="r-in"><span>  <span class="va">current_domain_spec</span>, <span class="co">#domain spec (set of constraints)</span></span></span>
 <span class="r-in"><span>  policy <span class="op">=</span> <span class="st">"FixedAutoRegressiveParameters"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'current_result_spec' not found</span>
 <span class="r-in"><span><span class="co"># 2nd estimation with refreshed specification</span></span></span>
 <span class="r-in"><span><span class="va">sa_ts_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="tramoseats.html">tramoseats</a></span><span class="op">(</span><span class="va">y_new</span>, <span class="va">spec_ts_ref</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'spec_ts_ref' not found</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
